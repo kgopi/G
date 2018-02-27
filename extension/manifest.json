@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "Gainsight",
+    "description": "",
+    "version": "0.1",
+    "browser_action": {
+      "default_icon":  {
+        "16": "images/16/inactive.png",
+        "19": "images/19/inactive.png",
+        "48": "images/48/inactive.png"
+      },
+      "default_title": "Enhances your usability"
+    },
+    "permissions": [
+      "https://*.salesforce.com/*",
+      "https://*.force.com/*",
+      "https://*.lightning.force.com/*",
+      "cookies"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://*.salesforce.com/*", "https://*.visual.force.com/*", "https://*.lightning.force.com/*"],
+        "js": ["content_script.js"],
+        "run_at": "document_end",
+        "all_frames": false
+      }
+    ],
+    "background": { "scripts": ["background.js"] },
+    "web_accessible_resources": [
+      "dist/app.js"
+    ],
+    "icons": {
+      "16":	"icons/16.png",
+      "19":	"icons/19.png",
+      "48":	"icons/48.png",
+      "128": "icons/128.png"
+    },
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+  }
