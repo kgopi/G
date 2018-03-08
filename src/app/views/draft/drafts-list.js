@@ -1,15 +1,9 @@
 import {h} from 'hyperapp';
+import DraftView from './draft';
 
-const Draft = ({id, name}) => (
-    <li id={id} class="draft-view">
-        <h2>{name}</h2>
-    </li>
-);
+const DraftsList = ({drafts}) => drafts.map(draft => <DraftView {...draft}/>);
 
-const DraftsList = ({drafts}) => drafts.map(draft => <Draft {...draft}/>);
-
-const DraftsView = (state, actions)=>{
-    debugger;
+const DraftsView = ({state, actions})=>{
     return (
         <div class="ext-drafts-container" oncreate={() => actions.drafts.getStaleData()}>
             <h1>Stale Drafts</h1>

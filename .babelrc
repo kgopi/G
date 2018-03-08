@@ -1,3 +1,4 @@
 {
-	"presets": ["hyperapp"]
+	"presets": ["hyperapp"],
+	"plugins": [["transform-react-jsx", { "pragma": "h" }]]
 }

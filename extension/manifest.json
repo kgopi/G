@@ -27,7 +27,8 @@
     ],
     "background": { "scripts": ["background.js"] },
     "web_accessible_resources": [
-      "dist/app.js"
+      "dist/app.js",
+      "dist/app.css"
     ],
     "icons": {
       "16":	"icons/16.png",
