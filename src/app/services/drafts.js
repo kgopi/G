@@ -1,7 +1,7 @@
 import * as Services from './../services/ServiceClient';
 
 export async function getStaleDrafts(){
-    return Services.get("/activity/drafts/unused?for=30");
+    return Services.get("/activity/drafts/unused?for=2");
 }
 
 export async function deleteDraftsByIds(ids){
