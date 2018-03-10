@@ -8,7 +8,7 @@ const MenuList = [{
 {
     id: "Activities",
     name: "Activities",
-    image: "//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/ic_draft_g60_24dp_r2.png"
+    image: "//www.gstatic.com/images/icons/material/system/2x/inbox_googblue_24dp.png"
 }];
 
 const MenuItem = (menuItem, activeMenuItem, updateMenu)=>{

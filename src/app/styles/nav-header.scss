@@ -1,16 +1,35 @@
 .g-ext-nav-container{
+    .g-ext-w200{
+        min-width: 200px;
+    }
+    .g-ext-w100{
+        min-width: 100px;
+    }
     .g-ext-nav-header{
-        background: #4285f4;
         -webkit-transition: background .15s;
         transition: background .15s;
         will-change: top,left;
         box-sizing: border-box;
         height: 56px;
-        position: fixed;
+        position: absolute;
         top: 0;
         width: 100%;
         z-index: 22;
         display: flex;
+        .g-ext-loading{
+            width: 0px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            height: 2px;
+            background-color: red;
+        }
+        &[role='Drafts']{
+            background: #898984;
+        }
+        &[role='Activities']{
+            background: #4285f4;
+        }
         &:before{
             will-change: top,left;
             box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
@@ -74,6 +93,74 @@
                     right: -4px;
                     top: -4px;
                     z-index: -1;
+                }
+            }
+        }
+        .g-ext-timeline-nav-2{
+            box-sizing: border-box;
+            margin: auto 0;
+            width: 100%;
+            display: -webkit-flex;
+            display: flex;
+            .g-ext-search-wrapper{
+                box-sizing: border-box;
+                height: 36px;
+                z-index: 1;
+                display: -webkit-flex;
+                display: flex;
+                position: relative;
+                flex: 1;
+                .g-ext-searchbar-holder{
+                    border-radius: 2px;
+                    min-width: 144px;
+                    position: relative;
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-flex: 1;
+                    flex: 1;
+                    background: rgba(255,255,255,.15);
+                    .g-ext-search-image-holder{
+                        display: inline-block;
+                        height: 36px;
+                        position: relative;
+                        width: 72px;
+                        img{
+                            -webkit-transform: scale(1);
+                            transform: scale(1);
+                            opacity: 1;
+                            height: 24px;
+                            left: 24px;
+                            position: absolute;
+                            top: 6px;
+                            width: 24px;
+                            -webkit-transition: -webkit-transform .15s linear;
+                            transition: transform .15s linear;
+                        }
+                    }
+                    .g-ext-search-input-holder{
+                        position: relative;
+                        -webkit-flex: 1;
+                        flex: 1;
+                        input{
+                            background: none;
+                            border: none;
+                            box-sizing: border-box;
+                            color: #fff;
+                            display: block;
+                            font-size: 1.2em;
+                            height: 36px;
+                            padding-right: 10px;
+                            position: absolute;
+                            width: 100%;
+                            &::placeholder {
+                                color: #fff;
+                                opacity: 1;
+                                -webkit-font-smoothing: antialiased;
+                                font-style: unset;
+                                font-size: 16px;
+                            }
+                        }
+                    }
                 }
             }
         }

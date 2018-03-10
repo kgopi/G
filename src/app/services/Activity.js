@@ -1,9 +1,9 @@
-export function getActivities(){
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>resolve([{id:1,name:"a"}, {id:2,name:"b"}]), 1000);
-    });
+import * as Services from './../services/ServiceClient';
+
+export async function getActivities(){
+    return Services.get("/timeline/search/activity/?to=4096788558000&page=0&size=20&q=&t=");
 }
 
-export async function getActivity(id){
-    return null;
+export async function deleteActivity(id){
+    return Services.del(`/activity/{id}`);
 }

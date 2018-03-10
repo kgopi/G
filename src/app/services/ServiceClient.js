@@ -22,7 +22,7 @@ function getAuthHeaders(){
             'version': VERSION,
         }
     }
-    window['GS'].timelineAuthToken && (headers['Authorization']= window['GS'].timelineAuthToken);
+    window['GS']._gExtToken && (headers['Authorization']= window['GS']._gExtToken);
     return headers;
 }
 
@@ -45,13 +45,28 @@ export function del(url){
     return makeRequest(url, "DELETE");
 }
 
+const addProgress = (parent)=>{
+    let progress = document.createElement('div');
+    progress.classList.add('g-ext-loading');
+    parent.appendChild(progress);
+    return progress;
+}
+
 const makeRequest = (url, method, data) => {
     return new Promise(function (resolve, reject) {
+        let progressBar = addProgress(document.getElementById('g-ext-nav-header'));
         let xhr = new XHR();
         xhr.open(method, SERVICE_URL + url, true);
         setAuthHeaders(xhr);
+        xhr.onprogress = function(eve){
+            if (eve.lengthComputable){
+                progressBar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+            }
+        };
         xhr.onload = function () {
+            progressBar.remove();
           if (this.status >= 200 && this.status < 300) {
+            window['GS']._gExtToken = xhr.getResponseHeader('authToken');
             resolve(JSON.parse(xhr.response));
           } else {
             reject({
@@ -61,6 +76,7 @@ const makeRequest = (url, method, data) => {
           }
         };
         xhr.onerror = function () {
+            progressBar.remove();
           reject({
             status: this.status,
             statusText: xhr.statusText

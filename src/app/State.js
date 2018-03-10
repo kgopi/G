@@ -4,9 +4,10 @@ export default {
     activeMenuItem: "Drafts",
     activities: {
         list: [],
-        totalCount: 0
+        selectedItem: null
     },
     drafts: {
-        staleData: []
+        staleData: [],
+        selectedDraft: null
     }
 };
