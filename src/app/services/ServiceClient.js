@@ -1,5 +1,5 @@
 const XHR = window.XMLHttpRequest;
-let headers, SERVICE_URL = getServiceUrl(), VERSION = 'v3';
+let headers, SERVICE_URL, VERSION = 'v3';
 
 function getServiceUrl(){
     if(SERVICE_URL == null && window['GS']){
@@ -56,11 +56,11 @@ const makeRequest = (url, method, data) => {
     return new Promise(function (resolve, reject) {
         let progressBar = addProgress(document.getElementById('g-ext-nav-header'));
         let xhr = new XHR();
-        xhr.open(method, SERVICE_URL + url, true);
+        xhr.open(method, getServiceUrl() + url, true);
         setAuthHeaders(xhr);
         xhr.onprogress = function(eve){
             if (eve.lengthComputable){
-                progressBar.style.width = Math.round(e.loaded / e.total * 100) + '%';
+                progressBar.style.width = Math.round(eve.loaded / eve.total * 100) + '%';
             }
         };
         xhr.onload = function () {

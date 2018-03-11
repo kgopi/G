@@ -20,12 +20,12 @@
     "content_scripts": [
       {
         "matches": ["https://*.salesforce.com/*", "https://*.visual.force.com/*", "https://*.lightning.force.com/*"],
-        "js": ["content_script.js"],
+        "js": ["dist/content-script.js"],
         "run_at": "document_end",
         "all_frames": false
       }
     ],
-    "background": { "scripts": ["background.js"] },
+    "background": { "scripts": ["dist/background.js"] },
     "web_accessible_resources": [
       "dist/app.js",
       "dist/app.css"

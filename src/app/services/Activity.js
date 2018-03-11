@@ -5,5 +5,5 @@ export async function getActivities(){
 }
 
 export async function deleteActivity(id){
-    return Services.del(`/activity/{id}`);
+    return Services.del(`/activity/${id}`);
 }

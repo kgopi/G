@@ -5,10 +5,14 @@ let isProd = process.env.NODE_ENV === 'production';
 let moduleOutFolder = path.resolve(__dirname, `extension/dist`);
 
 module.exports = {
-    entry: './src/app/index.js',
+    entry: {
+		'app': './src/app/index.js',
+		'background': './src/ext/background.js',
+		'content-script': './src/ext/content-script.js'
+	},
     output: {
         path: moduleOutFolder,
-        filename: "app.js"
+        filename: "[name].js"
 	},
 	plugins: [
 		new ExtractTextPlugin({
