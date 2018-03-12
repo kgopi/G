@@ -1,13 +1,15 @@
+import * as Constants from './constants';
+
 export default {
     active: false,
     showMenu: true,
-    activeMenuItem: "Drafts",
+    activeMenuItem: Constants.ACTIVITIES,
     activities: {
         list: [],
         selectedItem: null
     },
     drafts: {
-        staleData: [],
-        selectedDraft: null
+        list: [],
+        selectedItem: null
     }
 };

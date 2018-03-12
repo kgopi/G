@@ -2,28 +2,28 @@ import {h} from 'hyperapp';
 
 const MenuList = [{
     id: "Drafts",
-    name: "Drafts",
-    image: "//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/ic_draft_g60_24dp_r2.png"
+    name: "Drafts"
 },
 {
     id: "Activities",
-    name: "Activities",
-    image: "//www.gstatic.com/images/icons/material/system/2x/inbox_googblue_24dp.png"
+    name: "Activities"
 }];
 
-const MenuItem = (menuItem, activeMenuItem, updateMenu)=>{
+const MenuItem = (menuItem, activeMenuItem, actions)=>{
     return (
         <li data-id={menuItem.id} class={"g-ext-nav-menu-item " + (activeMenuItem == menuItem.id ? 'active' : '')} 
             onclick={
                 (eve)=>{
                     let id = eve.currentTarget.getAttribute("data-id");
                     if(activeMenuItem != id){
-                        updateMenu(id);
+                        actions.updateMenu(id);
+                        actions.getActiveMenuData(id);
                     }
+                    actions.toggleMenu();
                 }
             }
             >
-            <img src={menuItem.image}></img>
+            <img role={menuItem.id.toLowerCase()}></img>
             <span class="g-ext-label">{menuItem.name}</span>
         </li>
     );
@@ -32,9 +32,13 @@ const MenuItem = (menuItem, activeMenuItem, updateMenu)=>{
 export default ({state, actions})=>{
     return (
         <nav class={"g-ext-sidenav-holder " + (state.showMenu ? "" : "inactive")}>
+            {state.showMenu ? 
+                <div class="g-ext-nav-wrapper" onclick={(eve)=>{actions.toggleMenu()}}></div> 
+                : ''
+            }
             <div class="g-ext-nav-menu">
                 <ul class="g-ext-nav-menu-group">
-                    {MenuList.map((menuItem)=>MenuItem(menuItem, state.activeMenuItem, actions.updateMenu))}
+                    {MenuList.map((menuItem)=>MenuItem(menuItem, state.activeMenuItem, actions))}
                 </ul>
             </div>
         </nav>

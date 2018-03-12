@@ -11,9 +11,22 @@
     z-index: 1;
     -webkit-transition: -webkit-transform .15s ease-in-out;
     transition: transform .15s ease-in-out;
+    .g-ext-nav-wrapper{
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        opacity: 0.5;
+        background-color: black;
+        width: 100vh;
+        height: 100vh;
+        z-index: -1;
+    }
     &.inactive{
         -webkit-transform: translateX(-242px);
         transform: translateX(-242px);
+        .g-ext-nav-wrapper{
+            display: none;
+        }
     }
     .g-ext-nav-menu{
         background: #f2f2f2;
@@ -55,6 +68,12 @@
                     width: 24px;
                     -webkit-user-drag: none;
                     -webkit-user-select: none;
+                    &[role='activities']{
+                        content: url("./images/act_blue.png");
+                    }
+                    &[role='drafts']{
+                        content: url("./images/draft_black.png");
+                    }
                 }
                 .g-ext-label{
                     display: inline-block;

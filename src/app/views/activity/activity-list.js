@@ -14,7 +14,7 @@ const ActivitiesList = ({items, selectedItem, actions}) => {
 const ActivitiesView = ({state, actions})=>{
     debugger;
     return (
-        <div class="g-ext-activities-container" oncreate={() => actions.activities.get()}>
+        <div class="g-ext-activities-container">
             <div class="g-ext-activities-list g-ext-data-list">
                 <ActivitiesList 
                     items={state.activities.list} 

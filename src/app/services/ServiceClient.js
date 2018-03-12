@@ -46,6 +46,11 @@ export function del(url){
 }
 
 const addProgress = (parent)=>{
+
+    if(!parent){
+        parent = document.body;
+    }
+
     let progress = document.createElement('div');
     progress.classList.add('g-ext-loading');
     parent.appendChild(progress);

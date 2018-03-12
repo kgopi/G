@@ -13,12 +13,12 @@ const DraftsList = ({items, selectedItem, actions}) => {
 
 const DraftsView = ({state, actions})=>{
     return (
-        <div class="g-ext-drafts-container" oncreate={() => actions.drafts.getStaleData()}>
+        <div class="g-ext-drafts-container">
             <div class="g-ext-drafts-list g-ext-data-list">
                 <DraftsList 
-                    items={state.drafts.staleData} 
+                    items={state.drafts.list} 
                     actions={actions}
-                    selectedItem={state.drafts.selectedDraft} />
+                    selectedItem={state.drafts.selectedItem} />
             </div>
         </div>
     );

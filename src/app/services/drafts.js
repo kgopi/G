@@ -1,5 +1,9 @@
 import * as Services from './../services/ServiceClient';
 
+export async function getDrafts(){
+    return Services.get("/activity/drafts/unused?for=2");
+}
+
 export async function getStaleDrafts(){
     return Services.get("/activity/drafts/unused?for=2");
 }

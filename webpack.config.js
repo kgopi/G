@@ -34,6 +34,14 @@ module.exports = {
 					fallback: "style-loader",
 					use: [{ loader: 'css-loader', options: { minimize: isProd }}, "sass-loader"]
 				})
+			},
+			{
+				test: /\.(jpe?g|png|gif)$/i,
+				loader: "url-loader",
+				options: {
+					limit: 8000,
+					name: "images/[hash].[ext]"
+				}
 			}
 		]
 	},
