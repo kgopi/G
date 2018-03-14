@@ -42,10 +42,21 @@ class Crawler {
         return element;
     }
 
+    isNearWrapper(eve){
+
+        if(this._wrapper.style.display == 'none' || this._wrapper.style.display == ''){
+            return false;
+        }
+
+        let pos = this._wrapper.getBoundingClientRect();
+        let x = eve.clientX, y = eve.clientY;
+        return Math.abs(pos.left - x) <= 40 || Math.abs(pos.right - y) <= 40;
+    }
+
     _positionWrapper(eve){
         var eleToBeHighlighted = this.getElementToBeHighlighted(eve);
         if(!eleToBeHighlighted){
-            this.hideWrapper();
+            this.isNearWrapper(eve) || this.hideWrapper();
             return;
         }
 
@@ -73,7 +84,7 @@ class Crawler {
     }
 
     off (){
-        this.hideWrapper();
+        this.hideWrapper(true);
         this._doc.removeEventListener('mousemove', this.positionWrapper, true);
     }
 
