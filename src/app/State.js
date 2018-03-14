@@ -2,7 +2,7 @@ import * as Constants from './constants';
 
 export default {
     active: false,
-    showMenu: true,
+    showMenu: false,
     activeMenuItem: Constants.ACTIVITIES,
     activities: {
         list: [],

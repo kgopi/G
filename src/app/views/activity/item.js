@@ -1,41 +1,72 @@
 import {h} from 'hyperapp';
 import * as Utils from './../../utils/utils';
+import * as moment from 'moment';
 
 const LiteModeView = ({item, deleteItem})=>{
     return (
         <div class="g-ext-list-item-wrapper">
             <div class="g-ext-list-body">
-                <div class="g-ext-item-left">
-                    <img src={Utils.getLetterAvatar(item.author.name)}></img>
+                <div>
+                    <div class="g-ext-item-left">
+                        <img src={Utils.getLetterAvatar(item.author.name)}></img>
+                    </div>
+                    <div class="g-ext-item-center">
+                        <span class="g-ext-content g-ext-bold">{item.note.subject}</span>
+                    </div>
+                    <div class="g-ext-item-right">
+                        <div class="g-ext-text-wrap g-ext-flex-1">
+                            <span class="g-ext-content"><meta>{item.author.name}</meta><span class="g-ext-separator">|</span><meta>{moment.utc(item.note.activityDate).toDate().toLocaleString()}</meta></span>
+                        </div>
+                        <div>
+                            <ul class="g-ext-list-item-actions">
+                                <li class="g-ext-list-item-action"
+                                    onclick={(eve)=>{
+                                        eve.stopPropagation();
+                                        deleteItem(item.id);
+                                    }}
+                                >
+                                    <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="g-ext-item-center">
-                    <span class="g-ext-draft-label">{item.note.subject}</span>
-                </div>
-                <div class="g-ext-item-right">
+                {
+                    ContextLinks(item)
+                }
+                {/* <div>
+                    <div class="g-ext-profile-space-holder"></div>
                     <div class="g-ext-text-wrap g-ext-flex-1">
-                        <span class="g-ext-draft-content">{item.note.plainText}</span>
+                        <span class="g-ext-content">{item.note.plainText}</span>
                     </div>
-                    <div>
-                        <ul class="g-ext-list-item-actions">
-                            <li class="g-ext-list-item-action"
-                                onclick={(eve)=>{
-                                    eve.stopPropagation();
-                                    deleteItem(item.id);
-                                }}
-                            >
-                                <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
 }
 
+const ContextLinks = (item)=>(
+    item.contexts.length ?
+            <div>
+                <div class="g-ext-profile-space-holder"></div>
+                <ul class="g-ext-contexts-group">
+                    {
+                        item.contexts.map((context)=>(
+                            context.dsp ? <li><span class="account-info-link" title={(context.obj || context.eobj) + ": " + context.lbl}>{context.lbl}</span></li> : ''
+                        ))
+                    }
+                </ul>
+            </div>
+        : ''
+);
+
+const NotesContent = ({item})=>{
+    return (<div class="g-ext-note-content" oncreate={(ele)=>{ele.innerHTML = Utils.htmlUnescape(item.note.content)}}></div>);
+};
+
 const FullModeView = ({item, setSelectedItem, deleteItem})=>{
     return (
-        <div class="g-ext-list-item-fullmode">
+        <div class="g-ext-list-item-wrapper g-ext-list-item-fullmode">
             <div class="g-ext-highlight"></div>
             <div class="g-ext-heading"
                 onclick={(eve)=>{
@@ -48,8 +79,11 @@ const FullModeView = ({item, setSelectedItem, deleteItem})=>{
                         <img src={Utils.getLetterAvatar(item.author.name)}></img>
                     </div>
                     <div class="g-ext-item-center g-ext-flex-1">
-                        <div class="g-ext-flex-1">
-                            <span class="g-ext-draft-label">{item.note.subject}</span>
+                        <div class="g-ext-text-wrap g-ext-flex-1">
+                            <span class="g-ext-draft-label g-ext-bold">{item.note.subject}</span>
+                        </div>
+                        <div class="g-ext-text-wrap g-ext-flex-1">
+                            <span class="g-ext-content"><meta>{item.author.name}</meta><span class="g-ext-separator">|</span><meta>{moment.utc(item.note.activityDate).toDate().toLocaleString()}</meta></span>
                         </div>
                         <ul class="g-ext-list-item-actions">
                             <li class="g-ext-list-item-action"
@@ -64,8 +98,8 @@ const FullModeView = ({item, setSelectedItem, deleteItem})=>{
                     </div>
                 </div>
             </div>
-            <div class="g-ext-">
-
+            <div class="g-ext-activity-body">
+                <NotesContent item={item}></NotesContent>
             </div>
         </div>
     );

@@ -16,7 +16,7 @@ function getAuthHeaders(){
         let accessparams = JSON.parse(sessionStorage.getItem('accessparams') || {});
         headers = {
             appOrgId : window['GS'].orgId || (window['GSGA'] && window['GSGA'].orgId),
-            appSessionId : accessparams.sessionId || window['GS'].NSSessionId || window['GS'].sessionId,
+            appSessionId : window['GS'].NSSessionId || window['GS'].sessionId || accessparams.sessionId,
             appUserId  : window['GS'].userId || window['GS'].userConfig.userId,
             'Content-Type': 'application/json',
             'version': VERSION,

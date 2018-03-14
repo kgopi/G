@@ -1,12 +1,11 @@
 import {h} from 'hyperapp';
 
 const MenuList = [{
-    id: "Drafts",
-    name: "Drafts"
-},
-{
     id: "Activities",
     name: "Activities"
+},{
+    id: "Drafts",
+    name: "Drafts"
 }];
 
 const MenuItem = (menuItem, activeMenuItem, actions)=>{

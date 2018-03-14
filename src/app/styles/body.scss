@@ -18,6 +18,34 @@
 .g-ext-flex-1{
     flex: 1;
 }
+.g-ext-bold{
+    font-weight: bold;
+}
+.g-ext-profile-space-holder{
+    display: inline-block;
+    width: 72px;
+}
+.g-ext-separator{
+    color: #dedbdb;
+    padding: 0px 4px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bolder;
+}
+.g-ext-activity-body{
+    padding-left: 22px;
+    border-top: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 100%;
+    .g-ext-note-content{
+        overflow: auto;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        p, span{
+            white-space: normal;
+        }
+    }
+}
 .g-ext-body-container{
     height: 100%;
     overflow: auto;
@@ -80,6 +108,13 @@
                     line-height: 20px;
                     padding: 6px 0;
                     position: relative;
+                    .g-ext-content{
+                        color: #212121;
+                        meta{
+                            font-size: 13px;
+                            display: inline-block;
+                        }
+                    }
                     &:before{
                         bottom: 0;
                         box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
@@ -94,8 +129,27 @@
                     .g-ext-list-body{
                         margin: 6px 0;
                         position: relative;
-                        display: -webkit-flex;
-                        display: flex;
+                        > div{
+                            display: -webkit-flex;
+                            display: flex;
+                            margin: 4px 0px 0px 0px;
+                        }
+                        .g-ext-contexts-group{
+                            >li{
+                                display: inline-block;
+                                span{
+                                    color: #015ba7;
+                                }
+                                &:after{
+                                    content: '>';
+                                    margin: 0px 10px;
+                                    color: grey;
+                                }
+                                &:last-child:after{
+                                    display: none;
+                                }
+                            }
+                        }
                     }
                 }
                 .g-ext-item-left{

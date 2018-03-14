@@ -39,3 +39,17 @@ export function getLetterAvatar(name){
 
     return dataURI;
 }
+
+export function htmlUnescape(replaceStr){
+    if(replaceStr !== null && replaceStr !== undefined){
+        return String(replaceStr)
+            .replace(/&quot;/g, '"')
+            .replace(/(&#39;)|(&apos;)/g, "'")
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+    }
+    else{
+        return '';
+    }
+}
