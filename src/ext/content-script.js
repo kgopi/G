@@ -15,6 +15,7 @@ function injectStyle(file, node){
     s.setAttribute("rel", "stylesheet");
     th.appendChild(s);
 }
+injectStyle("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i", 'body');
 injectStyle(chrome.extension.getURL('dist/app.css'), 'body');
 injectScript(chrome.extension.getURL('dist/app.js'), 'body');
 

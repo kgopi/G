@@ -90,7 +90,7 @@
                                 position: relative;
                                 width: 100%;
                                 will-change: top,left;
-                                padding: 16px 20px;
+                                padding: 16px 20px 16px 0px;
                                 display: flex;
                                 .g-ext-item-center{
                                     width: auto;
@@ -103,7 +103,6 @@
                     }
                 }
                 .g-ext-list-item-wrapper{
-                    white-space: nowrap;
                     background: #fff;
                     line-height: 20px;
                     padding: 6px 0;
