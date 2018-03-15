@@ -21,7 +21,7 @@ document.addEventListener(Constants.ENABLE, ()=>{
         timelineApp = app(state, actions, view, div);
         Spy.on();
     }
-    Constants.ACTIVITIES == state.activeMenuItem ? timelineApp.activities.get({}) : timelineApp.drafts.get({});
+    timelineApp.getActiveMenuData();
 });
 
 document.addEventListener(Constants.DISABLE, ()=>{
