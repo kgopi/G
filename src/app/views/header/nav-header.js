@@ -11,7 +11,7 @@ export default ({activeMenuItem,toggleMenu, closeTimeline})=>{
                     <span title="Timeline" class="g-ext-active-selection">{activeMenuItem}</span>
                 </div>
                 <div class="g-ext-timeline-nav-2">
-                    <div class="g-ext-w200"></div>
+                    <div class="g-ext-w175"></div>
                     <div class="g-ext-search-wrapper">
                         <div class="g-ext-searchbar-holder">
                             <div class="g-ext-search-image-holder">
@@ -22,7 +22,7 @@ export default ({activeMenuItem,toggleMenu, closeTimeline})=>{
                             </div>
                         </div>
                     </div>
-                    <div class="g-ext-w100"></div>
+                    <div class="g-ext-w25"></div>
                 </div>
                 <div class="g-ext-timeline-nav-3">
                     <span class="g-ext-close-icon-wrapper" onclick={(eve)=>{closeTimeline()}}>

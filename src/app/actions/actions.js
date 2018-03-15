@@ -16,10 +16,16 @@ export default {
     toggleState: ()=> (state) => {
         return {active: !state.active};
     },
-    getActiveMenuData: menuId => (state, actions)=>{
-        Constants.ACTIVITIES == menuId ? actions.activities.get() : actions.drafts.get();
+    persistFilters: (filters)=> (state)=> {
+        state.filters = filters;
     },
-    updateMenu: menuItem=>({activeMenuItem: menuItem}),
+    getActiveMenuData: (menuItem) => (state, actions)=>{
+        (Constants.ACTIVITIES == (menuItem || state.activeMenuItem)) ? actions.activities.get(state.filters) : actions.drafts.get(state.filters);
+    },
+    updateMenu: menuItem => (state, actions)=> {
+        actions.getActiveMenuData(menuItem);
+        return {activeMenuItem: menuItem};
+    },
     activities: {
         update: data => ({list: data}),
         setSelectedItem: activityId => ({selectedItem: activityId}),
@@ -41,7 +47,7 @@ export default {
         setSelectedItem: draftId => ({selectedItem: draftId}),
         get: ({accountId, relationshipId, searchText}) => (state, actions) => {
             DraftServices.getDrafts(getQueryParams({accountId, relationshipId, searchText, size:500})).then((res) => {
-                let list = res.data;
+                let list = res.data.content;
                 actions.update(list);
             });
         },

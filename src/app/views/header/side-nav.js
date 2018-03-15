@@ -16,7 +16,6 @@ const MenuItem = (menuItem, activeMenuItem, actions)=>{
                     let id = eve.currentTarget.getAttribute("data-id");
                     if(activeMenuItem != id){
                         actions.updateMenu(id);
-                        actions.getActiveMenuData(id);
                     }
                     actions.toggleMenu();
                 }

@@ -11,20 +11,19 @@ document.body.appendChild(div);
 
 document.addEventListener(Constants.RESET, (eve)=>{
     let filters = {accountId: eve.detail.accountId, relationshipId: eve.detail.relationshipId, searchText: eve.detail.searchText};
-    Constants.ACTIVITIES == state.activeMenuItem ? timelineApp.activities.get(filters) : timelineApp.drafts.get(filters);
+    timelineApp.persistFilters(filters);
+    timelineApp.getActiveMenuData();
     timelineApp.showTimeline();
 });
 
 document.addEventListener(Constants.ENABLE, ()=>{
-
-    if(timelineApp){
-        return;
+    if(timelineApp == null){
+        timelineApp = app(state, actions, view, div);
+        Spy.on();
     }
-
-    timelineApp = app(state, actions, view, div);
     Constants.ACTIVITIES == state.activeMenuItem ? timelineApp.activities.get({}) : timelineApp.drafts.get({});
-    Spy.on();
 });
+
 document.addEventListener(Constants.DISABLE, ()=>{
     if(timelineApp){
         Spy.off();
