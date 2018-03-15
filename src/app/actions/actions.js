@@ -7,7 +7,10 @@ export default {
     toggleMenu: () => (state) => {
         return {showMenu: !state.showMenu};
     },
-    showTimeline: ()=> (state) => {
+    closeTimeline: ()=>{
+        return {active: false};
+    },
+    showTimeline: ()=>{
         return {active: true};
     },
     toggleState: ()=> (state) => {

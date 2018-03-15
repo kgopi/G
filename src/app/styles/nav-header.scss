@@ -16,6 +16,16 @@
         width: 100%;
         z-index: 22;
         display: flex;
+        img{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 24px;
+            height: 24px;
+            width: 24px;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+        }
         .g-ext-loading{
             width: 0px;
             position: absolute;
@@ -161,6 +171,20 @@
                             }
                         }
                     }
+                }
+            }
+        }
+        .g-ext-timeline-nav-3{
+            box-sizing: border-box;
+            margin: auto 0;
+            width: 50px;
+            .g-ext-close-icon-wrapper{
+                box-sizing: border-box;
+                height: 36px;
+                z-index: 1;
+                position: relative;
+                .g-ext-close-icon{
+                    content: url("./images/close_white_24px.svg");
                 }
             }
         }

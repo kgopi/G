@@ -1,6 +1,6 @@
 import {h} from 'hyperapp';
 
-export default ({activeMenuItem,toggleMenu})=>{
+export default ({activeMenuItem,toggleMenu, closeTimeline})=>{
     return (
         <nav class="g-ext-nav-container">
             <div id="g-ext-nav-header" class="g-ext-nav-header" role={activeMenuItem}>
@@ -23,6 +23,11 @@ export default ({activeMenuItem,toggleMenu})=>{
                         </div>
                     </div>
                     <div class="g-ext-w100"></div>
+                </div>
+                <div class="g-ext-timeline-nav-3">
+                    <span class="g-ext-close-icon-wrapper" onclick={(eve)=>{closeTimeline()}}>
+                        <img class="g-ext-close-icon" aria-hidden="true"></img>
+                    </span>
                 </div>
             </div>
         </nav>
