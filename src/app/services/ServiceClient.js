@@ -90,3 +90,22 @@ const makeRequest = (url, method, data) => {
         xhr.send(data);
       });
 }
+
+export function addUrlParams(url, params){
+
+    if(!params){
+        return url;
+    }
+
+    if(typeof params == "string"){
+        url += params;
+    }else{
+        url += "/?";
+        for(var key in params){
+            url += key + '=' + params[key] + '&';
+        }
+        url = url.slice(0, -1);
+    }
+
+    return url;
+}

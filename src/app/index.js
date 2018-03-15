@@ -5,24 +5,30 @@ import state from './State';
 import view from './views/main';
 import * as Constants from './constants';
 
-let draftsApp, div = document.createElement('div');
+let timelineApp, div = document.createElement('div');
 div.setAttribute('class', 'g-ext-content-wrapper');
 document.body.appendChild(div);
 
+document.addEventListener(Constants.RESET, (eve)=>{
+    let filters = {accountId: eve.detail.accountId, relationshipId: eve.detail.relationshipId, searchText: eve.detail.searchText};
+    Constants.ACTIVITIES == state.activeMenuItem ? timelineApp.activities.get(filters) : timelineApp.drafts.get(filters);
+    timelineApp.showTimeline();
+});
+
 document.addEventListener(Constants.ENABLE, ()=>{
 
-    if(draftsApp){ // Skip if it is already rendered
+    if(timelineApp){
         return;
     }
 
-    draftsApp = app(state, actions, view, div);
-    Constants.ACTIVITIES == state.activeMenuItem ? draftsApp.activities.get() : draftsApp.drafts.get();
+    timelineApp = app(state, actions, view, div);
+    Constants.ACTIVITIES == state.activeMenuItem ? timelineApp.activities.get({}) : timelineApp.drafts.get({});
     Spy.on();
 });
 document.addEventListener(Constants.DISABLE, ()=>{
-    if(draftsApp){
+    if(timelineApp){
         Spy.off();
-        draftsApp = null;
+        timelineApp = null;
         document.querySelector('.g-ext-main').remove();
     }
 });

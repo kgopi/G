@@ -1,10 +1,14 @@
 import * as ActivityServices from './../services/Activity';
 import * as DraftServices from './../services/drafts';
 import * as Constants from './../constants';
+import {getQueryParams} from './../utils/utils';
 
 export default {
     toggleMenu: () => (state) => {
         return {showMenu: !state.showMenu};
+    },
+    showTimeline: ()=> (state) => {
+        return {active: true};
     },
     toggleState: ()=> (state) => {
         return {active: !state.active};
@@ -16,8 +20,8 @@ export default {
     activities: {
         update: data => ({list: data}),
         setSelectedItem: activityId => ({selectedItem: activityId}),
-        get: () => (state, actions) => {
-            ActivityServices.getActivities().then((res) => {
+        get: ({accountId, relationshipId, searchText}) => (state, actions) => {
+            ActivityServices.getActivities(getQueryParams({accountId, relationshipId, searchText})).then((res) => {
                 let list = res.data.content;
                 actions.update(list);
             });
@@ -32,8 +36,8 @@ export default {
     drafts: {
         update: data => ({list: data}),
         setSelectedItem: draftId => ({selectedItem: draftId}),
-        get: () => (state, actions) => {
-            DraftServices.getDrafts().then((res) => {
+        get: ({accountId, relationshipId, searchText}) => (state, actions) => {
+            DraftServices.getDrafts(getQueryParams({accountId, relationshipId, searchText, size:500})).then((res) => {
                 let list = res.data;
                 actions.update(list);
             });

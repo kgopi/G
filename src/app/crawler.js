@@ -1,4 +1,5 @@
 // View component -- View highlighter
+import * as Constants from './constants';
 
 class Crawler {
 
@@ -25,8 +26,9 @@ class Crawler {
     };
 
     _wrapperClickHandler(eve){
-        debugger;
-        // open timeline
+        this.hideWrapper();
+        var event = new CustomEvent(Constants.RESET, { detail: {accountId: this._wrapper.accountId} });
+        document.dispatchEvent(event);
     }
 
     getElementToBeHighlighted (eve){
@@ -89,7 +91,7 @@ class Crawler {
     }
 
     hideWrapper (){
-        this._wrapper.style.display = "none";
+        this._wrapper && (this._wrapper.style.display = "none");
     }
 
 }

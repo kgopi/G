@@ -1,3 +1,6 @@
+import * as QueryAttribute from './../services/query-builder/QueryAttribute';
+import Query from './../services/query-builder/Query';
+
 export function getLetterAvatar(name){
     let size = 60;
 
@@ -52,4 +55,15 @@ export function htmlUnescape(replaceStr){
     else{
         return '';
     }
+}
+
+export function getQueryParams({accountId, relationshipId, searchText, size}){
+    var f = {to: 4096788558000, page:0, size: size || 20};
+    searchText && (f.t = encodeURIComponent(searchText));
+    let expression;
+
+    accountId && (expression = QueryAttribute.ID.equals(accountId));
+    relationshipId &&  expression ? (expression = expression.OR(QueryAttribute.ID.equals(relationshipId))) : QueryAttribute.ID.equals(relationshipId);
+    f.q = expression ? encodeURIComponent(new Query(expression).toString()): "";
+    return f;
 }
