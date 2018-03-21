@@ -22,7 +22,7 @@
     font-weight: bold;
     font-family: sans-serif;
     line-height: 1.5;
-    z-index: 999999999;
+    z-index: 99999999;
     cursor: pointer;
     will-change: display, top, left;
 }
@@ -51,7 +51,7 @@
         overflow: auto;
         width: 50px;
         height: 50px;
-        z-index: 99999999;
+        z-index: 9999999999;
         cursor: pointer;
         .g-ext-circle{
             position: relative;
@@ -65,32 +65,20 @@
                     content: '+';
                 }
             }
-            .g-ext-close{
-                @extend .center;
-                &::after{
-                    content: 'x';
-                }
-            }
-        }
-        &[role='close']{
-            bottom: initial;
-            top: 10px;
-            width: 30px;
-            height: 30px;
-            .g-ext-circle{
-                background-color: grey;
-            }
         }
     }
     .g-ext-data-layer{
         position: fixed;
-        width: 100%;
+        width: 502px;
         height: 100%;
         background-color: #fff;
-        z-index: 99999999999;
+        z-index: 999999999;
         border-radius: 5px;
-        margin: 0px;
         top: 0px;
+        top: 0;
+        right: 0px;
+        box-shadow: -2px 0px 10px 1px #aaaaaa;
+        overflow: hidden;
         .g-ext-header{
             .g-ext-close{
                 height: 40px;

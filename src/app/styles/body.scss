@@ -49,10 +49,57 @@
 .g-ext-body-container{
     height: 100%;
     overflow: auto;
+    background-color: #f2f2f2;
+    .g-ext-emptydata{
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        >img{
+            display: inline-block;
+            height: 159px;
+            margin-bottom: 20px;
+            -webkit-user-drag: none;
+            background-color: #888882;
+            border-radius: 50%;
+            padding: 35px;
+            &.g-ext-draft-img{
+                content: url("./images/ic_drafts_white_36px.svg");
+            }
+            &.g-ext-activity-img{
+                content: url("./images/ic_inbox_white_36px.svg");
+            }
+        }
+        .g-ext-data-header{
+            font-size: 200%;
+            margin-bottom: 10px;
+            color: #888;
+        }
+        .g-ext-data-subheader{
+            font-size: 120%;
+            color: #888;
+        }
+    }
     .g-ext-body-wrapper{
         width: 100%;
         min-width: 512px;
         padding: 56px 0 1px;
+        .g-ext-data-nesting{
+            border-bottom: 1px solid transparent;
+            color: #616161;
+            line-height: 24px;
+            margin: 20px 0 8px;
+            padding: 0 24px;
+            align-items: center;
+            -webkit-align-items: center;
+            display: -webkit-flex;
+            display: flex;
+            will-change: transform,-webkit-transform;
+            > div{
+                margin-right: 48px;
+                -webkit-flex: 1;
+                flex: 1;
+            }
+        }
         .g-ext-data-list{
             margin: 0;
             padding: 20px;

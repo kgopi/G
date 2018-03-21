@@ -1,3 +1,10 @@
+@keyframes g-ext-progress {
+    0% { left: 0; }
+    25% { left: 25%; }
+    50% { left: 50%; }
+    75% { left: 75%; }
+    100% { left: 100%; }
+  }
 .g-ext-nav-container{
     .g-ext-w175{
         min-width: 175px;
@@ -27,12 +34,14 @@
             cursor: pointer;
         }
         .g-ext-loading{
-            width: 0px;
+            width: 250px;
             position: absolute;
-            bottom: 0px;
-            left: 0px;
-            height: 2px;
-            background-color: red;
+            bottom: -2px;
+            left: 0;
+            height: 5px;
+            background-color: #ff4500;
+            animation: g-ext-progress 1s infinite;
+            animation-timing-function: linear;
         }
         &[role='Drafts']{
             background: #898984;
@@ -46,7 +55,7 @@
             content: "";
             height: 56px;
             left: -2%;
-            position: fixed;
+            position: absolute;
             width: 104%;
         }
         .g-ext-timeline-nav{
