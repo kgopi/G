@@ -28,6 +28,11 @@
 }
 .g-ext-main{
     font-family: ‘Open Sans’, sans-serif;
+    button{
+        background: none;
+        background-color: #f2f2f2;
+        border: none;
+    }
     .g-ext-icon{
         position: relative;
         font-family: 'Material Icons Extended';

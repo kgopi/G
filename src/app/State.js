@@ -7,10 +7,12 @@ export default {
     filters: {},
     activities: {
         list: [],
+        filters: {},
         selectedItem: null
     },
     drafts: {
         list: [],
+        filters: {},
         selectedItem: null
     }
 };

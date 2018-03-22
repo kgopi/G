@@ -18,6 +18,8 @@ export default {
     },
     persistFilters: (filters)=> (state)=> {
         state.filters = filters;
+        state.activities.filters = filters;
+        state.drafts.filters = filters;
     },
     getActiveMenuData: (menuItem) => (state, actions)=>{
         (Constants.ACTIVITIES == (menuItem || state.activeMenuItem)) ? actions.activities.get(state.filters) : actions.drafts.get(state.filters);
@@ -55,6 +57,12 @@ export default {
             DraftServices.deleteDraftsByIds(JSON.stringify([id])).then((res) => {
                 let list = state.list.filter((draft)=>draft.id != id);
                 actions.update(list);
+            });
+        },
+        deleteStaleDrafts: () => (state, actions)=> {
+            DraftServices.deleteAllStaleDrafts().then((res) => {
+                debugger;
+                actions.get(state.filters);
             });
         }
     }

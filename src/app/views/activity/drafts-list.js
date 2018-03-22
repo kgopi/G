@@ -22,10 +22,10 @@ const DraftsList = ({items, selectedItem, actions}) => {
                 drafts['activeDrafts'].push(item);
             }
         });
-        // drafts.staleDrafts = drafts.staleDrafts = drafts.activeDrafts.reduce((acc, it, i)=>{
-        //     acc.push(Object.assign({}, it, {id: ++i}));
-        //     return acc;
-        // }, []); // ##TODO remove
+        drafts.staleDrafts = drafts.staleDrafts = drafts.activeDrafts.reduce((acc, it, i)=>{
+            acc.push(Object.assign({}, it, {id: ++i}));
+            return acc;
+        }, []); // ##TODO remove
         // debugger;
         if(drafts.staleDrafts.length){
             return (
@@ -36,6 +36,7 @@ const DraftsList = ({items, selectedItem, actions}) => {
                     <DraftView items={drafts.activeDrafts} selectedItem={selectedItem} actions={actions}></DraftView>
                     <div class="g-ext-data-nesting">
                         <div>Stale Drafts</div>
+                        <button onclick={(eve)=>{actions.drafts.deleteStaleDrafts()}}>Delete all</button>
                     </div>
                     <DraftView items={drafts.staleDrafts} selectedItem={selectedItem} actions={actions}></DraftView>
                 </div>
