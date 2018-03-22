@@ -15,17 +15,21 @@ function injectStyle(file, node){
     s.setAttribute("rel", "stylesheet");
     th.appendChild(s);
 }
-injectStyle("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i", 'body');
-injectStyle(chrome.extension.getURL('dist/app.css'), 'body');
-injectScript(chrome.extension.getURL('dist/app.js'), 'body');
 
-chrome.runtime.onMessage.addListener((message)=>{
-    if(message.action == Constants.ENABLE){
-        let eve = new Event(Constants.ENABLE);
-        document.dispatchEvent(eve);
-    }
-    else if(message.action == Constants.DISABLE){
-        let eve = new Event(Constants.DISABLE);
-        document.dispatchEvent(eve);
-    }
-});
+if(document.location.hostname.match(/mail\.google/)){
+    injectScript(chrome.extension.getURL('dist/gmail-script.js'), 'body');
+}else{
+    injectStyle("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i", 'body');
+    injectStyle(chrome.extension.getURL('dist/app.css'), 'body');
+    injectScript(chrome.extension.getURL('dist/app.js'), 'body');
+    chrome.runtime.onMessage.addListener((message)=>{
+        if(message.action == Constants.ENABLE){
+            let eve = new Event(Constants.ENABLE);
+            document.dispatchEvent(eve);
+        }
+        else if(message.action == Constants.DISABLE){
+            let eve = new Event(Constants.DISABLE);
+            document.dispatchEvent(eve);
+        }
+    });
+}

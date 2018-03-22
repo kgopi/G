@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Gainsight",
+    "name": "Activities & Timeline",
     "description": "",
     "version": "0.1",
     "browser_action": {
@@ -20,7 +20,7 @@
     ],
     "content_scripts": [
       {
-        "matches": ["https://*.salesforce.com/*", "https://*.visual.force.com/*", "https://*.lightning.force.com/*"],
+        "matches": ["https://*.salesforce.com/*", "https://*.visual.force.com/*", "https://*.lightning.force.com/*", "https://mail.google.com/*"],
         "js": ["dist/content-script.js"],
         "run_at": "document_end",
         "all_frames": false
@@ -29,7 +29,8 @@
     "background": { "scripts": ["dist/background.js"] },
     "web_accessible_resources": [
       "dist/app.js",
-      "dist/app.css"
+      "dist/app.css",
+      "dist/gmail-script.js"
     ],
     "icons": {
       "16":	"icons/16.png",
