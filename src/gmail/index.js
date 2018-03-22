@@ -5,7 +5,7 @@ function main(){
     // https://github.com/KartikTalwar/gmail.js
     window.gmail = new Gmail();
     gmail.observe.on('compose', function(compose_ref){
-      var timeBtn = '<div id="timeline-action-btn" role="button" tabindex="1" data-tooltip="Send to timeline">Post on Timeline</div>';
+      var timeBtn = '<div id="timeline-action-btn" role="button" tabindex="1" data-tooltip="Post to timeline">Post to Timeline</div>';
       var onBtnClick = function(){
         debugger;
         // var emailId = this.compose_ref.email_id();
