@@ -8,8 +8,8 @@ module.exports = {
     entry: {
 		'app': './src/app/index.js',
 		'background': './src/ext/background.js',
-		'content-script': './src/ext/content-script.js',
-		'gmail-script': './src/gmail/index.js'
+		'content-script': './src/ext/content-script.js'
+		//'gmail-script': './src/gmail/index.js'
 	},
     output: {
         path: moduleOutFolder,
