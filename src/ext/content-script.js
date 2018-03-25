@@ -16,9 +16,7 @@ function injectStyle(file, node){
     th.appendChild(s);
 }
 
-if(document.location.hostname.match(/mail\.google/)){
-    injectScript(chrome.extension.getURL('dist/gmail-script.js'), 'body');
-}else{
+if(document.location.href.match(/jbcxm/i) || document.location.search.match('kgext')){
     injectStyle("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i", 'body');
     injectStyle(chrome.extension.getURL('dist/app.css'), 'body');
     injectScript(chrome.extension.getURL('dist/app.js'), 'body');

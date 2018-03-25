@@ -9,19 +9,45 @@ let timelineApp, div = document.createElement('div');
 div.setAttribute('class', 'g-ext-content-wrapper');
 document.body.appendChild(div);
 
+function closeTimeline(){
+    timelineApp.closeTimeline();
+}
+
+function initTimeline(){
+    if(timelineApp == null){
+        timelineApp = app(state, actions, view, div);
+        timelineApp.getActiveMenuData();
+        Spy.on();
+    }
+}
+
+function openTimeline(){
+    initTimeline();
+    timelineApp.showTimeline();
+}
+
+document.addEventListener('keydown', (eve)=>{
+    if(eve.altKey && eve.keyCode == 84){ //Open
+        openTimeline();
+    }else if(eve.keyCode == 27){ //Close
+        closeTimeline();
+    }
+}, true);
+
 document.addEventListener(Constants.RESET, (eve)=>{
-    let filters = {accountId: eve.detail.accountId, relationshipId: eve.detail.relationshipId, searchText: eve.detail.searchText};
+    let filters = {
+        accountId: eve.detail.accountId, 
+        relationshipId: eve.detail.relationshipId, 
+        searchText: eve.detail.searchText,
+        objName: eve.detail.objName
+    };
     timelineApp.persistFilters(filters);
     timelineApp.getActiveMenuData();
     timelineApp.showTimeline();
 });
 
 document.addEventListener(Constants.ENABLE, ()=>{
-    if(timelineApp == null){
-        timelineApp = app(state, actions, view, div);
-        Spy.on();
-    }
-    timelineApp.getActiveMenuData();
+    initTimeline();
 });
 
 document.addEventListener(Constants.DISABLE, ()=>{

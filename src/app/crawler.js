@@ -27,7 +27,7 @@ class Crawler {
 
     _wrapperClickHandler(eve){
         this.hideWrapper();
-        var event = new CustomEvent(Constants.RESET, { detail: {accountId: this._wrapper.accountId} });
+        var event = new CustomEvent(Constants.RESET, { detail: {accountId: this._wrapper.accountId, objName: this._wrapper.objName} });
         document.dispatchEvent(event);
     }
 
@@ -68,8 +68,10 @@ class Crawler {
             var position = eleToBeHighlighted.getBoundingClientRect();
             this._wrapper.activeElement = eleToBeHighlighted;
             this._wrapper.accountId = new URL(eleToBeHighlighted.href || "").searchParams.get('cid');
+            this._wrapper.objName = eleToBeHighlighted.textContent;
             this._wrapper.style.top = position.top + "px";
-            this._wrapper.style.left = position.right + 20 + "px";
+            let parentPosition = eleToBeHighlighted.parentElement ? eleToBeHighlighted.parentElement.getBoundingClientRect() : position;
+            this._wrapper.style.left = (parentPosition.right <= position.right ? parentPosition.right : position.right) + 15 + "px";
             this._wrapper.style.display = "block";
         }
     }

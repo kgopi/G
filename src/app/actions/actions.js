@@ -17,9 +17,11 @@ export default {
         return {active: !state.active};
     },
     persistFilters: (filters)=> (state)=> {
-        state.filters = filters;
-        state.activities.filters = filters;
-        state.drafts.filters = filters;
+        return {
+            filters : filters,
+            activities: Object.assign({}, state.activities, {filters: filters}),
+            drafts: Object.assign({}, state.drafts, {filters: filters})
+        }
     },
     getActiveMenuData: (menuItem) => (state, actions)=>{
         (Constants.ACTIVITIES == (menuItem || state.activeMenuItem)) ? actions.activities.get(state.filters) : actions.drafts.get(state.filters);

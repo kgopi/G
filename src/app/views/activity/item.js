@@ -8,10 +8,10 @@ const LiteModeView = ({item, deleteItem})=>{
             <div class="g-ext-list-body">
                 <div>
                     <div class="g-ext-item-left">
-                        <img src={Utils.getLetterAvatar(item.author.name)}></img>
+                        <img title={item.author.name} src={Utils.getLetterAvatar(item.author.name)}></img>
                     </div>
-                    <div class="g-ext-item-center">
-                        <span class="g-ext-content g-ext-bold">{item.note.subject}</span>
+                    <div class="g-ext-item-center g-ext-text-wrap">
+                        <span title={item.note.subject} class="g-ext-content g-ext-bold">{item.note.subject || '--'}</span>
                     </div>
                     <div class="g-ext-item-right">
                         <div class="g-ext-text-wrap g-ext-flex-1">
@@ -76,11 +76,11 @@ const FullModeView = ({item, setSelectedItem, deleteItem})=>{
                 >
                 <div class="g-ext-heading-wrapper">
                     <div class="g-ext-item-left">
-                        <img src={Utils.getLetterAvatar(item.author.name)}></img>
+                        <img title={item.author.name} src={Utils.getLetterAvatar(item.author.name)}></img>
                     </div>
                     <div class="g-ext-item-center g-ext-flex-1">
                         <div class="g-ext-text-wrap g-ext-flex-1">
-                            <span class="g-ext-draft-label g-ext-bold">{item.note.subject}</span>
+                            <span title={item.note.subject} class="g-ext-draft-label g-ext-bold">{item.note.subject || '--'}</span>
                         </div>
                         <div class="g-ext-text-wrap g-ext-flex-1">
                             <span class="g-ext-content"><meta>{item.author.name}</meta><span class="g-ext-separator">|</span><meta>{moment.utc(item.note.activityDate).toDate().toLocaleString()}</meta></span>
