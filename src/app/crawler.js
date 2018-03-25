@@ -27,7 +27,15 @@ class Crawler {
 
     _wrapperClickHandler(eve){
         this.hideWrapper();
-        var event = new CustomEvent(Constants.RESET, { detail: {accountId: this._wrapper.accountId, objName: this._wrapper.objName} });
+        var event = new CustomEvent(Constants.RESET, { 
+            detail: {
+                accountId: this._wrapper.accountId,
+                relationshipId: this._wrapper.relationshipId,
+                accountId: this._wrapper.accountId,
+                objName: this._wrapper.objName,
+                objType: this._wrapper.objType
+            } 
+        });
         document.dispatchEvent(event);
     }
 
@@ -37,10 +45,31 @@ class Crawler {
             x = eve.clientX,
             y = eve.clientY,
             elements = this._doc.elementsFromPoint(x, y);
+        
+        // Account lookup
         element = elements.find(function(element){
-            let accountRef = element.closest("a[href*='cid=001']")
-            return accountRef ? true : false;
+            let lookupEle = element.closest("a[href*='cid=001']")
+            if(lookupEle){
+                lookupEle._accountId = new URL(lookupEle.href || "").searchParams.get('cid');
+                lookupEle._objType = "Account";
+                return true;
+            }else{
+                return false;
+            }
         });
+        if(element == null){
+            // Relationship lookup
+            element = elements.find(function(element){
+                let lookupEle = element.closest("a[href*='Relationship360?rId']")
+                if(lookupEle){
+                    lookupEle._relationshipId = new URL(element.href || "").searchParams.get('rId');
+                    lookupEle._objType = "Relationship";
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+        }
         return element;
     }
 
@@ -66,8 +95,12 @@ class Crawler {
             this._wrapper.style.display = "block";
         }else{
             var position = eleToBeHighlighted.getBoundingClientRect();
+            this._wrapper.innerHTML = eleToBeHighlighted._relationshipId ? "RT" : "AT";
+            this._wrapper.title = eleToBeHighlighted._relationshipId ? "Relationship Timeline" : "Customer Timeline";
             this._wrapper.activeElement = eleToBeHighlighted;
-            this._wrapper.accountId = new URL(eleToBeHighlighted.href || "").searchParams.get('cid');
+            this._wrapper.accountId = eleToBeHighlighted._accountId;
+            this._wrapper.relationshipId = eleToBeHighlighted._relationshipId;
+            this._wrapper.objType = eleToBeHighlighted._objType;
             this._wrapper.objName = eleToBeHighlighted.textContent;
             this._wrapper.style.top = position.top + "px";
             let parentPosition = eleToBeHighlighted.parentElement ? eleToBeHighlighted.parentElement.getBoundingClientRect() : position;

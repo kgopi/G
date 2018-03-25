@@ -63,7 +63,10 @@ export function getQueryParams({accountId, relationshipId, searchText, size}){
     let expression;
 
     accountId && (expression = QueryAttribute.ID.equals(accountId));
-    relationshipId &&  expression ? (expression = expression.OR(QueryAttribute.ID.equals(relationshipId))) : QueryAttribute.ID.equals(relationshipId);
+    relationshipId && 
+        (expression = (expression ? expression.OR(QueryAttribute.ID.equals(relationshipId))
+                                    : QueryAttribute.ID.equals(relationshipId))
+                );
     f.q = expression ? encodeURIComponent(new Query(expression).toString()): "";
     return f;
 }

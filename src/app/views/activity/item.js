@@ -69,7 +69,7 @@ const FullModeView = ({item, setSelectedItem, deleteItem})=>{
         <div class="g-ext-list-item-wrapper g-ext-list-item-fullmode"
                 onupdate={ele=>{
                     ele.scrollIntoView();
-                    document.querySelector('.g-ext-body-container').scrollTop -= 95;
+                    document.querySelector('.g-ext-body-container').scrollTop -= 75;
                 }}
             >
             <div class="g-ext-highlight"></div>

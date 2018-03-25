@@ -14,7 +14,7 @@ export default (state, actions) => {
                     }
                 }
             >
-               <div class="g-ext-circle">
+               <div class="g-ext-circle" title="Global Timeline">
                    <i class="g-ext-icon g-ext-plus"></i>
                </div>
            </div>

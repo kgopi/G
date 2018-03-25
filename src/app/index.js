@@ -39,6 +39,7 @@ document.addEventListener(Constants.RESET, (eve)=>{
         accountId: eve.detail.accountId, 
         relationshipId: eve.detail.relationshipId, 
         searchText: eve.detail.searchText,
+        objType: eve.detail.objType,
         objName: eve.detail.objName
     };
     timelineApp.persistFilters(filters);
