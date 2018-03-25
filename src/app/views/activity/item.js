@@ -19,14 +19,18 @@ const LiteModeView = ({item, deleteItem})=>{
                         </div>
                         <div>
                             <ul class="g-ext-list-item-actions">
-                                <li class="g-ext-list-item-action"
-                                    onclick={(eve)=>{
-                                        eve.stopPropagation();
-                                        deleteItem(item.id);
-                                    }}
-                                >
-                                    <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
-                                </li>
+                            {
+                                item.author.eid == GS.userConfig.userId
+                                ? <li class="g-ext-list-item-action"
+                                        onclick={(eve)=>{
+                                            eve.stopPropagation();
+                                            deleteItem(item.id);
+                                        }}
+                                    >
+                                        <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
+                                    </li>
+                                : ''
+                            }
                             </ul>
                         </div>
                     </div>
@@ -91,14 +95,18 @@ const FullModeView = ({item, setSelectedItem, deleteItem})=>{
                             <span class="g-ext-content"><meta>{item.author.name}</meta><span class="g-ext-separator">|</span><meta>{moment.utc(item.note.activityDate).toDate().toLocaleString()}</meta></span>
                         </div>
                         <ul class="g-ext-list-item-actions">
-                            <li class="g-ext-list-item-action"
-                                onclick={(eve)=>{
-                                    eve.stopPropagation();
-                                    deleteItem(item.id);
-                                }}
-                            >
-                                <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
-                            </li>
+                            {
+                                item.author.eid == GS.userConfig.userId
+                                ? <li class="g-ext-list-item-action"
+                                        onclick={(eve)=>{
+                                            eve.stopPropagation();
+                                            deleteItem(item.id);
+                                        }}
+                                    >
+                                        <img src="//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/btw_ic_mark_trash_black_24dp.png"></img>
+                                    </li>
+                                : ''
+                            }
                         </ul>
                     </div>
                 </div>
