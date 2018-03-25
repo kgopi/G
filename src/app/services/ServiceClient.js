@@ -7,6 +7,11 @@ function getServiceUrl(){
             window['GS'].antConfig = JSON.parse(window['GS'].antConfig);
         }
         SERVICE_URL = ((window['GS'].antConfig && window['GS'].antConfig.api_url) || window['GS'].nsURL || window['GS'].NSURL || (window['GS'] && window['GS']['nsParams'] && window['GS']['nsParams'].url) || (window['nsParams'] && window['nsParams'].url));
+
+        if(SERVICE_URL == null){
+            let params = JSON.parse(sessionStorage.getItem('accessparams'));
+            SERVICE_URL = params.url;
+        }
     }
     return (SERVICE_URL || window.location.origin + "/v1") + "/ant";
 }

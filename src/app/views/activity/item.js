@@ -66,7 +66,12 @@ const NotesContent = ({item})=>{
 
 const FullModeView = ({item, setSelectedItem, deleteItem})=>{
     return (
-        <div class="g-ext-list-item-wrapper g-ext-list-item-fullmode">
+        <div class="g-ext-list-item-wrapper g-ext-list-item-fullmode"
+                onupdate={ele=>{
+                    ele.scrollIntoView();
+                    document.querySelector('.g-ext-body-container').scrollTop -= 95;
+                }}
+            >
             <div class="g-ext-highlight"></div>
             <div class="g-ext-heading"
                 onclick={(eve)=>{

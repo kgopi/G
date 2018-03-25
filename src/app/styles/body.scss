@@ -23,7 +23,7 @@
 }
 .g-ext-profile-space-holder{
     display: inline-block;
-    width: 72px;
+    width: 50px;
 }
 .g-ext-separator{
     color: #dedbdb;
@@ -81,7 +81,6 @@
     }
     .g-ext-body-wrapper{
         width: 100%;
-        min-width: 512px;
         padding: 56px 0 1px;
         .g-ext-data-nesting{
             border-bottom: 1px solid transparent;
@@ -202,7 +201,7 @@
                     height: 28px;
                     margin: -4px 0;
                     position: relative;
-                    width: 72px;
+                    width: 42px;
                     align-items: center;
                     -webkit-align-items: center;
                     display: -webkit-flex;
